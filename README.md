@@ -10,24 +10,24 @@
     1. makefile 만들기
 
         ```Makefile
-            obj-m := mylcd.o
-            KDIR := $(HOME)/linux-study/linux
-            PWD  := $(shell pwd)
-
-            all:
-                make -C $(KDIR) M=$(PWD) modules -j12 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
-
-            clean:
-                make -C $(KDIR) M=$(PWD) clean
-
         
+        obj-m := mylcd.o
+        KDIR := $(HOME)/linux-study/linux
+        PWD  := $(shell pwd)
+
+        all:
+            make -C $(KDIR) M=$(PWD) modules -j12 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-
+
+        clean:
+            make -C $(KDIR) M=$(PWD) clean
+
         ```
     
     2. Makefile과 mylcd.c 를 같은 폴더에 넣고, 아래 명령 실행
 
         ```bash
 
-            $ make
+        $ make
 
         ```
 
@@ -35,7 +35,7 @@
 
         ```bash
 
-            $ scp mylcd.ko <username>@<라즈베리파이 ip addr>:<저장할폴더경로>
+        $ scp mylcd.ko <username>@<라즈베리파이 ip addr>:<저장할폴더경로>
 
         ```
 
@@ -43,7 +43,7 @@
 - LCD 드라이버 설치 명령
 
     ```bash
-        
+
     $ sudo insmod mylcd.ko
     $ sudo mknod /dev/mylcd c $(grep mylcd /proc/devices | awk '{print $1}') 0
 
